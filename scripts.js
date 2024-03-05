@@ -47,4 +47,12 @@ calculateButton.addEventListener('click', (e) =>{
   console.log(solution);
   display.textContent = String(solution);
   console.log(display.textContent);
-})
+});
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', (e) => {
+  display.textContent = '0';
+  currentNumber = 0;
+  lastNumber = 0;
+  operator = '';
+});
