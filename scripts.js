@@ -1,7 +1,7 @@
-const DisplayValue = document.querySelector('#display').textContent;
-const CurrentNumber = 0;
-const LastNumber = 0;
-const Operator = '';
+let display = document.querySelector('#display');
+let currentNumber = 198;
+let lastNumber = 400;
+let operator = '/';
 
 
 const add = (num1, num2) => {
@@ -21,22 +21,30 @@ const divide = (num1, num2) => {
 };
 
 const operate = () => {
-  switch (Operator) {
+  switch (operator) {
     case "+": {
-      let result = add(CurrentNumber, LastNumber);
+      let result = add(currentNumber, lastNumber);
       return result;
     }  
     case "-": {
-      let result = subtract(CurrentNumber, LastNumber);
+      let result = subtract(currentNumber, lastNumber);
       return result;
     }
     case "*": {
-      let result = multiply(CurrentNumber, LastNumber);
+      let result = multiply(currentNumber, lastNumber);
       return result;
     }
-    case "-": {
-      let result = divide(CurrentNumber, LastNumber);
+    case "/": {
+      let result = divide(currentNumber, lastNumber);
       return result;
     };
   };
 };
+
+const calculateButton = document.querySelector('#calculate');
+calculateButton.addEventListener('click', (e) =>{
+  let solution = operate(operator);
+  console.log(solution);
+  display.textContent = String(solution);
+  console.log(display.textContent);
+})
