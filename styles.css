@@ -1,0 +1,22 @@
+body {
+  background-color: #121827;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calc-container {
+  border: 2px solid whitesmoke;
+  height: 48em;
+  width: 40em;
+}
+
+#footer {
+  font-size: 10px;
+  color: whitesmoke;
+  text-align: center;
+  padding-top: 2em;
+}
