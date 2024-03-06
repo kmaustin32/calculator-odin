@@ -1,6 +1,6 @@
 let display = document.querySelector('#display');
-let currentNumber = 198;
-let lastNumber = 400;
+let currentNumber = 0;
+let lastNumber = 0;
 let operator = '/';
 
 
@@ -56,3 +56,23 @@ clearButton.addEventListener('click', (e) => {
   lastNumber = 0;
   operator = '';
 });
+
+// Add event listeners to operator keys
+let oprBtns = document.querySelectorAll('.opr');
+
+for (let i = 0; i < oprBtns.length; i++) {
+  oprBtns[i].addEventListener('click', (e) => {
+    operator = e.target.textContent;
+    console.log(e.target.textContent)
+  });
+};
+
+// Add event listeners to num keys
+let numBtns = document.querySelectorAll('.num');
+
+for (let i = 0; i < numBtns.length; i++) {
+  numBtns[i].addEventListener('click', (e) => {
+    let activeNum = e.target.textContent;
+    console.log(activeNum)
+  })
+}

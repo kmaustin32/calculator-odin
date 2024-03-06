@@ -52,6 +52,7 @@ body {
   color: whitesmoke;
   border-color: whitesmoke;
   background-color: rgba(255, 20, 147, .5);
+  filter: blur(1.25px);
 }
 
 #calculate:hover {
