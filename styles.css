@@ -19,6 +19,7 @@ body {
   height: 48em;
   width: 40em;
   box-sizing: border-box;
+  border-radius: 12px;
 }
 
 #display {
@@ -31,6 +32,7 @@ body {
   padding: 1em;
   text-align: end;
   border: 2px solid rgb(40, 40, 40);
+  border-radius: 10px;
 }
 
 #btn-container {
@@ -47,9 +49,21 @@ body {
   border: 2px solid deeppink;
 }
 
+#clear:active {
+  color: whitesmoke;
+  border-color: whitesmoke;
+  background-color: rgba(255, 20, 147, .5);
+}
+
 #calculate:hover {
   color: mediumslateblue;
   border: 2px solid mediumslateblue;
+}
+
+#calculate:active {
+  color: whitesmoke;
+  border-color: whitesmoke;
+  background-color: rgba(123, 104, 238, .5);
 }
 
 #footer {
