@@ -30,8 +30,7 @@ body {
   color: rgb(40, 40, 40);
   box-sizing: border-box;
   padding: 1em;
-  text-align: end;
-  border: 2px solid rgb(40, 40, 40);
+  border: 4px solid rgb(40, 40, 40);
   border-radius: 10px;
 }
 
