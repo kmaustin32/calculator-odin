@@ -1,7 +1,7 @@
 let display = document.querySelector('#display');
-let currentNumber = 0;
-let lastNumber = 0;
-let operator = '/';
+let currentNumber = '';
+let lastNumber = '';
+let operator = '';
 
 
 const add = (num1, num2) => {
@@ -51,9 +51,9 @@ calculateButton.addEventListener('click', (e) =>{
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => {
-  display.textContent = '0';
-  currentNumber = 0;
-  lastNumber = 0;
+  display.textContent = '';
+  currentNumber = '';
+  lastNumber = '';
   operator = '';
 });
 
@@ -64,6 +64,16 @@ for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     operator = e.target.textContent;
     console.log(e.target.textContent)
+    if (!lastNumber) {
+      lastNumber = parseInt(display.textContent);
+    } else {
+      lastNumber += parseInt(currentNumber);
+      currentNumber = parseInt(display.textContent)
+    }
+
+    console.log(lastNumber);
+    console.log(currentNumber);
+    display.textContent = operator;
   });
 };
 
@@ -73,6 +83,7 @@ let numBtns = document.querySelectorAll('.num');
 for (let i = 0; i < numBtns.length; i++) {
   numBtns[i].addEventListener('click', (e) => {
     let activeNum = e.target.textContent;
+    display.textContent += activeNum;
     console.log(activeNum)
-  })
-}
+  });
+};
