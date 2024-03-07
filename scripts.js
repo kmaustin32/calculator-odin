@@ -1,7 +1,7 @@
 let display = document.querySelector('#display');
 
 let calcObj = {
-  display: display.textContent,
+  display: '',
   current: '',
   last: '',
   operator: ''
@@ -15,37 +15,41 @@ const currentObj = () => {
 };
 
 const add = () => {
-  return calcObj.last + calcObj.current;
+  return parseInt(calcObj.last) + parseInt(calcObj.current);
 };
 
 const subtract = () => {
-  return calcObj.last - calcObj.current;
+  return parseInt(calcObj.last) - parseInt(calcObj.current);
 };
 
 const multiply = () => {
-  return calcObj.last * calcObj.current;
+  return parseInt(calcObj.last) * parseInt(calcObj.current);
 };
 
 const divide = () => {
-  return calcObj.last / calcObj.current;
+  return parseInt(calcObj.last) / parseInt(calcObj.current);
 };
 
 const operate = () => {
   switch (calcObj.operator) {
     case "+": {
       let result = add();
+      display.textContent = result;
       return result;
     }  
     case "-": {
       let result = subtract();
+      display.textContent = result;
       return result;
     }
     case "*": {
       let result = multiply();
+      display.textContent = result;
       return result;
     }
     case "/": {
       let result = divide();
+      display.textContent = result;
       return result;
     };
   };
@@ -64,6 +68,7 @@ clearButton.addEventListener('click', (e) => {
   calcObj.current = '';
   calcObj.last = '';
   calcObj.operator = '';
+  display.textContent = '';
 });
 
 // Add event listeners to operator keys
@@ -88,6 +93,9 @@ for (let i = 0; i < numBtns.length; i++) {
   numBtns[i].addEventListener('click', (e) => {
     let activeNum = e.target.textContent;
     calcObj.display = calcObj.display + activeNum;
+    calcObj.current = calcObj.current + activeNum;
+    display.textContent = calcObj.display;
     console.log(activeNum)
+    console.log(calcObj.display)
   });
 };
