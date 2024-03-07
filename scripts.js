@@ -1,41 +1,51 @@
 let display = document.querySelector('#display');
-let currentNumber = '';
-let lastNumber = '';
-let operator = '';
 
-
-const add = (num1, num2) => {
-  return num1 + num2;
+let calcObj = {
+  display: display.textContent,
+  current: '',
+  last: '',
+  operator: ''
 };
 
-const subtract = (num1, num2) => {
-  return num1 - num2;
+const currentObj = () => {
+  Object.keys(calcObj).forEach(key => {
+    let value = calcObj[key];
+    console.log(`Key: ${key}, Value: ${value}`);
+  });
 };
 
-const multiply = (num1, num2) => {
-  return num1 * num2;
+const add = () => {
+  return calcObj.last + calcObj.current;
 };
 
-const divide = (num1, num2) => {
-  return num1 / num2;
+const subtract = () => {
+  return calcObj.last - calcObj.current;
+};
+
+const multiply = () => {
+  return calcObj.last * calcObj.current;
+};
+
+const divide = () => {
+  return calcObj.last / calcObj.current;
 };
 
 const operate = () => {
-  switch (operator) {
+  switch (calcObj.operator) {
     case "+": {
-      let result = add(currentNumber, lastNumber);
+      let result = add();
       return result;
     }  
     case "-": {
-      let result = subtract(currentNumber, lastNumber);
+      let result = subtract();
       return result;
     }
     case "*": {
-      let result = multiply(currentNumber, lastNumber);
+      let result = multiply();
       return result;
     }
     case "/": {
-      let result = divide(currentNumber, lastNumber);
+      let result = divide();
       return result;
     };
   };
@@ -43,18 +53,17 @@ const operate = () => {
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
-  let solution = operate(operator);
-  console.log(solution);
-  display.textContent = String(solution);
-  console.log(display.textContent);
+  let solution = operate(calcObj.operator);
+  console.log("calc button solution: " + solution);
+  calcObj.display = String(solution);
 });
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => {
-  display.textContent = '';
-  currentNumber = '';
-  lastNumber = '';
-  operator = '';
+  calcObj.display = '';
+  calcObj.current = '';
+  calcObj.last = '';
+  calcObj.operator = '';
 });
 
 // Add event listeners to operator keys
@@ -62,18 +71,13 @@ let oprBtns = document.querySelectorAll('.opr');
 
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
-    operator = e.target.textContent;
-    console.log(e.target.textContent)
-    if (!lastNumber) {
-      lastNumber = parseInt(display.textContent);
-    } else {
-      lastNumber += parseInt(currentNumber);
-      currentNumber = parseInt(display.textContent)
-    }
-
-    console.log(lastNumber);
-    console.log(currentNumber);
-    display.textContent = operator;
+    calcObj.operator = e.target.textContent;
+    console.log("Operator: " + calcObj.operator);
+    calcObj.last = calcObj.current;
+    console.log("Last: " + calcObj.last)
+    calcObj.current = '';
+    console.log("Current: " + calcObj.current);
+    calcObj.display = '';
   });
 };
 
@@ -83,7 +87,7 @@ let numBtns = document.querySelectorAll('.num');
 for (let i = 0; i < numBtns.length; i++) {
   numBtns[i].addEventListener('click', (e) => {
     let activeNum = e.target.textContent;
-    display.textContent += activeNum;
+    calcObj.display = calcObj.display + activeNum;
     console.log(activeNum)
   });
 };
