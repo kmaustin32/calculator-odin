@@ -1,5 +1,3 @@
-/* try :active to get better woosh */
-
 * {
   font-family: 'Courier New', Courier, monospace;
 }
@@ -25,13 +23,15 @@ body {
 #display {
   height: 25%;
   background-color: rgb(195, 195, 195);
-  font-size: 3em;
+  font-size: 3.5em;
   font-weight: bold;
   color: rgb(40, 40, 40);
   box-sizing: border-box;
   padding: 1em;
   border: 4px solid rgb(40, 40, 40);
   border-radius: 10px;
+  text-align: end;
+  overflow: hidden;
 }
 
 #btn-container {
@@ -53,6 +53,8 @@ body {
   border-color: whitesmoke;
   background-color: rgba(255, 20, 147, .5);
   filter: blur(1.25px);
+  transition: rotate 500ms;
+  rotate: 360deg;
 }
 
 #calculate:hover {
@@ -64,6 +66,14 @@ body {
   color: whitesmoke;
   border-color: whitesmoke;
   background-color: rgba(123, 104, 238, .5);
+  transition: rotate 500ms;
+  rotate: 360deg;
+}
+
+.num:active, 
+.opr:active {
+  transform: scale(1.1);
+  transition: transform 200ms ease;
 }
 
 #footer {
