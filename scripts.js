@@ -107,5 +107,27 @@ for (let i = 0; i < numBtns.length; i++) {
 
 let allBtns = document.querySelectorAll('.btn');
 document.addEventListener('keydown', (e) => {
-  console.log(e.key);
+  let pressed = e.key;
+  console.log(pressed);
+
+  if(pressed === "=" || pressed === "Enter") {
+    let solution = operate(calcObj.operator);
+    calcObj.last = solution;
+    display.textContent = solution;
+    calcObj.current = '';
+    calcObj.operator = '';
+    currentObj();
+  };
+  if (pressed === '+' || pressed === '-' || pressed === '*' || pressed === '/') {
+    calcObj.operator = pressed;
+    calcObj.last = calcObj.current;
+    calcObj.current = '';
+    currentObj();
+  };
+  pressed = parseInt(pressed);
+  if (pressed >= 0 && pressed <= 9) {
+    calcObj.current += String(pressed);
+    display.textContent = calcObj.current;
+  };
+  return;
 })
