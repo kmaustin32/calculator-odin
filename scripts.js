@@ -27,32 +27,32 @@ const multiply = () => {
 };
 
 const divide = () => {
+  if (calcObj.current == '0') {
+    return "I'm melting...";
+  };
   return parseInt(calcObj.last) / parseInt(calcObj.current);
 };
 
 const operate = () => {
+  let result;
   switch (calcObj.operator) {
     case "+": {
-      let result = add();
-      display.textContent = result;
-      return result;
+      result = add();
     }  
     case "-": {
-      let result = subtract();
-      display.textContent = result;
-      return result;
+      result = subtract();
     }
     case "*": {
-      let result = multiply();
-      display.textContent = result;
-      return result;
+      result = multiply();
     }
     case "/": {
-      let result = divide();
-      display.textContent = result;
-      return result;
+      result = divide();
     };
   };
+
+  result = Math.round(result * 100) / 100;
+  display.textContent = result;
+  return result;
 };
 
 const calculateButton = document.querySelector('#calculate');
