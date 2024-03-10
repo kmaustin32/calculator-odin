@@ -29,7 +29,7 @@ const multiply = () => {
 };
 
 const divide = () => {
-  if (calcObj.last === '') contu
+  if (calcObj.last === '') return;
   if (calcObj.current == '0') return "I'm melting...";
   return parseInt(calcObj.last) / parseInt(calcObj.current);
 };
@@ -87,11 +87,8 @@ let oprBtns = document.querySelectorAll('.opr');
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     calcObj.operator = e.target.textContent;
-    let solution = operate(e.target.value);
-    calcObj.last = solution;
-    display.textContent = calcObj.last;
+    calcObj.last = calcObj.current;
     calcObj.current = '';
-    console.log(solution);
     currentObj();
   });
 };
