@@ -35,6 +35,9 @@ const divide = () => {
 
 const operate = () => {
   let result = 0;
+
+  if(calcObj.current === '') return;
+
   switch (calcObj.operator) {
     case "+": {
       result = add();
@@ -56,13 +59,15 @@ const operate = () => {
 
   result = Math.round(result * 100) / 100;
   display.textContent = result;
+  calcObj.last = result;
+  calcObj.current = '';
+  currentObj();
   return result;
 };
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
   let solution = operate(calcObj.operator);
-  console.log("calc button solution: " + solution);
   calcObj.display = String(solution);
 });
 
@@ -81,11 +86,10 @@ let oprBtns = document.querySelectorAll('.opr');
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     calcObj.operator = e.target.textContent;
-    console.log("Operator: " + calcObj.operator);
+    if (calcObj.last !== '') operate();
+
     calcObj.last = calcObj.current;
-    console.log("Last: " + calcObj.last)
     calcObj.current = '';
-    console.log("Current: " + calcObj.current);
     calcObj.display = '';
   });
 };
@@ -99,7 +103,5 @@ for (let i = 0; i < numBtns.length; i++) {
     calcObj.display = calcObj.display + activeNum;
     calcObj.current = calcObj.current + activeNum;
     display.textContent = calcObj.display;
-    console.log('activeNum: ' + activeNum)
-    console.log( 'calcObj.display: ' + calcObj.display)
   });
 };
