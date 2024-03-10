@@ -2,7 +2,7 @@ let display = document.querySelector('#display');
 
 let calcObj = {
   current: '',
-  last: '0',
+  last: '',
   operator: ''
 };
 
@@ -14,21 +14,23 @@ const currentObj = () => {
 };
 
 const add = () => {
+  if (calcObj.last === '') calcObj.last = 0;
   return parseInt(calcObj.last) + parseInt(calcObj.current);
 };
 
 const subtract = () => {
+  if (calcObj.last === '') calcObj.last = 0;
   return parseInt(calcObj.last) - parseInt(calcObj.current);
 };
 
 const multiply = () => {
+  if (calcObj.last === '') calcObj.last = 1;
   return parseInt(calcObj.last) * parseInt(calcObj.current);
 };
 
 const divide = () => {
-  if (calcObj.current == '0') {
-    return "I'm melting...";
-  };
+  if (calcObj.last === '') contu
+  if (calcObj.current == '0') return "I'm melting...";
   return parseInt(calcObj.last) / parseInt(calcObj.current);
 };
 
@@ -65,14 +67,15 @@ calculateButton.addEventListener('click', (e) =>{
   let solution = operate(calcObj.operator);
   calcObj.last = solution;
   display.textContent = solution;
+  calcObj.current = '';
+  calcObj.operator = '';
   currentObj();
 });
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => {
-  calcObj.display = '';
   calcObj.current = '';
-  calcObj.last = '0';
+  calcObj.last = '';
   calcObj.operator = '';
   display.textContent = '';
   currentObj();
@@ -84,11 +87,11 @@ let oprBtns = document.querySelectorAll('.opr');
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     calcObj.operator = e.target.textContent;
-    let solution = operate(calcObj.operator);
-
+    let solution = operate(e.target.value);
     calcObj.last = solution;
+    display.textContent = calcObj.last;
     calcObj.current = '';
-    display.textContent = solution;
+    console.log(solution);
     currentObj();
   });
 };
@@ -104,3 +107,8 @@ for (let i = 0; i < numBtns.length; i++) {
     currentObj();
   });
 };
+
+let allBtns = document.querySelectorAll('.btn');
+document.addEventListener('keydown', (e) => {
+  console.log(e.key);
+})
