@@ -15,23 +15,22 @@ const currentObj = () => {
 
 const add = () => {
   if (calcObj.last === '') calcObj.last = 0;
-  return parseInt(calcObj.last) + parseInt(calcObj.current);
+  return parseFloat(calcObj.last) + parseFloat(calcObj.current);
 };
 
 const subtract = () => {
   if (calcObj.last === '') calcObj.last = 0;
-  return parseInt(calcObj.last) - parseInt(calcObj.current);
+  return parseFloat(calcObj.last) - parseFloat(calcObj.current);
 };
 
 const multiply = () => {
   if (calcObj.last === '') calcObj.last = 1;
-  return parseInt(calcObj.last) * parseInt(calcObj.current);
+  return parseFloat(calcObj.last) * parseFloat(calcObj.current);
 };
 
 const divide = () => {
   if (calcObj.last === '') return;
-  if (calcObj.current == '0') return "I'm melting...";
-  return parseInt(calcObj.last) / parseInt(calcObj.current);
+  return parseFloat(calcObj.last) / parseFloat(calcObj.current);
 };
 
 const operate = () => {
@@ -87,7 +86,7 @@ let oprBtns = document.querySelectorAll('.opr');
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     calcObj.operator = e.target.textContent;
-    calcObj.last = calcObj.current;
+    if(!calcObj.last) calcObj.last = calcObj.current;
     calcObj.current = '';
     currentObj();
   });
@@ -120,11 +119,11 @@ document.addEventListener('keydown', (e) => {
   };
   if (pressed === '+' || pressed === '-' || pressed === '*' || pressed === '/') {
     calcObj.operator = pressed;
-    calcObj.last = calcObj.current;
+    if(!calcObj.last) calcObj.last = calcObj.current;
     calcObj.current = '';
     currentObj();
   };
-  pressed = parseInt(pressed);
+  pressed = parseFloat(pressed);
   if (pressed >= 0 && pressed <= 9) {
     calcObj.current += String(pressed);
     display.textContent = calcObj.current;
