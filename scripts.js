@@ -1,9 +1,8 @@
 let display = document.querySelector('#display');
 
 let calcObj = {
-  display: '',
   current: '',
-  last: '',
+  last: '0',
   operator: ''
 };
 
@@ -58,26 +57,25 @@ const operate = () => {
   };
 
   result = Math.round(result * 100) / 100;
-  display.textContent = result;
-  calcObj.last = result;
-  calcObj.current = '';
-  currentObj();
   return result;
 };
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
   let solution = operate(calcObj.operator);
-  calcObj.display = String(solution);
+  calcObj.last = solution;
+  display.textContent = solution;
+  currentObj();
 });
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => {
   calcObj.display = '';
   calcObj.current = '';
-  calcObj.last = '';
+  calcObj.last = '0';
   calcObj.operator = '';
   display.textContent = '';
+  currentObj();
 });
 
 // Add event listeners to operator keys
@@ -86,11 +84,12 @@ let oprBtns = document.querySelectorAll('.opr');
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
     calcObj.operator = e.target.textContent;
-    if (calcObj.last !== '') operate();
+    let solution = operate(calcObj.operator);
 
-    calcObj.last = calcObj.current;
+    calcObj.last = solution;
     calcObj.current = '';
-    calcObj.display = '';
+    display.textContent = solution;
+    currentObj();
   });
 };
 
@@ -100,8 +99,8 @@ let numBtns = document.querySelectorAll('.num');
 for (let i = 0; i < numBtns.length; i++) {
   numBtns[i].addEventListener('click', (e) => {
     let activeNum = e.target.textContent;
-    calcObj.display = calcObj.display + activeNum;
     calcObj.current = calcObj.current + activeNum;
-    display.textContent = calcObj.display;
+    display.textContent = calcObj.current;
+    currentObj();
   });
 };
