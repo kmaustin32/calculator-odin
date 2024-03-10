@@ -34,19 +34,23 @@ const divide = () => {
 };
 
 const operate = () => {
-  let result;
+  let result = 0;
   switch (calcObj.operator) {
     case "+": {
       result = add();
+      break;
     }  
     case "-": {
       result = subtract();
+      break;
     }
     case "*": {
       result = multiply();
+      break
     }
     case "/": {
       result = divide();
+      break;
     };
   };
 
@@ -95,7 +99,7 @@ for (let i = 0; i < numBtns.length; i++) {
     calcObj.display = calcObj.display + activeNum;
     calcObj.current = calcObj.current + activeNum;
     display.textContent = calcObj.display;
-    console.log(activeNum)
-    console.log(calcObj.display)
+    console.log('activeNum: ' + activeNum)
+    console.log( 'calcObj.display: ' + calcObj.display)
   });
 };
