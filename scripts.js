@@ -104,6 +104,7 @@ for (let i = 0; i < numBtns.length; i++) {
   });
 };
 
+// Add event listeners to operator and enter keys
 let allBtns = document.querySelectorAll('.btn');
 document.addEventListener('keydown', (e) => {
   let pressed = e.key;
