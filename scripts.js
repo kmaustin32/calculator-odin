@@ -80,6 +80,13 @@ clearButton.addEventListener('click', (e) => {
   currentObj();
 });
 
+const deleteBtn = document.querySelector('#delete');
+deleteBtn.addEventListener('click', (e) => {
+  let newCurrent = calcObj.current.slice(0, -1);
+  calcObj.current = newCurrent;
+  display.textContent = calcObj.current;
+})
+
 // Add event listeners to operator keys
 let oprBtns = document.querySelectorAll('.opr');
 
@@ -118,12 +125,27 @@ document.addEventListener('keydown', (e) => {
     calcObj.operator = '';
     currentObj();
   };
+  if (pressed === "Backspace") {
+    let newCurrent = calcObj.current.slice(0, -1);
+    calcObj.current = newCurrent;
+    display.textContent = calcObj.current;
+  };
+  if (pressed === 'Delete') {
+    calcObj.current = '';
+    calcObj.last = '';
+    calcObj.operator = '';
+    display.textContent = '';
+  };
   if (pressed === '+' || pressed === '-' || pressed === '*' || pressed === '/') {
     calcObj.operator = pressed;
     if(!calcObj.last) calcObj.last = calcObj.current;
     calcObj.current = '';
     currentObj();
   };
+  if (pressed === '.') {
+    calcObj.current += '.';
+    display.textContent = calcObj.current;
+  }
   pressed = parseFloat(pressed);
   if (pressed >= 0 && pressed <= 9) {
     calcObj.current += String(pressed);
