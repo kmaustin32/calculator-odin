@@ -6,6 +6,7 @@ let calcObj = {
   operator: ''
 };
 
+// This function is for debugging purposes only
 const currentObj = () => {
   Object.keys(calcObj).forEach(key => {
     let value = calcObj[key];
@@ -42,15 +43,15 @@ const operate = () => {
     case "+": {
       result = add();
       break;
-    }  
+    }; 
     case "-": {
       result = subtract();
       break;
-    }
+    };
     case "*": {
       result = multiply();
       break
-    }
+    };
     case "/": {
       result = divide();
       break;
@@ -85,7 +86,7 @@ deleteBtn.addEventListener('click', (e) => {
   let newCurrent = calcObj.current.slice(0, -1);
   calcObj.current = newCurrent;
   display.textContent = calcObj.current;
-})
+});
 
 // Add event listeners to operator keys
 let oprBtns = document.querySelectorAll('.opr');
@@ -145,11 +146,11 @@ document.addEventListener('keydown', (e) => {
   if (pressed === '.') {
     calcObj.current += '.';
     display.textContent = calcObj.current;
-  }
+  };
   pressed = parseFloat(pressed);
   if (pressed >= 0 && pressed <= 9) {
     calcObj.current += String(pressed);
     display.textContent = calcObj.current;
   };
   return;
-})
+});
