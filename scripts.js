@@ -37,7 +37,8 @@ const divide = () => {
 const operate = () => {
   let result = 0;
 
-  if(calcObj.current === '') return;
+  if (calcObj.current === '') return;
+  if (calcObj. current === '0' && calcObj.operator === '/') return "BAD...";
 
   switch (calcObj.operator) {
     case "+": {
@@ -93,8 +94,17 @@ let oprBtns = document.querySelectorAll('.opr');
 
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
+    let calculated = operate(calcObj.operator);
+    
     calcObj.operator = e.target.textContent;
-    if(!calcObj.last) calcObj.last = calcObj.current;
+    
+    if (!calcObj.last) {
+      calcObj.last = calcObj.current
+    } else {
+      calcObj.last = calculated;
+    };
+
+    display.textContent = calcObj.last;
     calcObj.current = '';
     currentObj();
   });
