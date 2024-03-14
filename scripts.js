@@ -65,6 +65,10 @@ const operate = () => {
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
+  if (!calcObj.current || !calcObj.last) {
+    currentObj();
+    return;
+  }
   let solution = operate(calcObj.operator);
   calcObj.last = solution;
   display.textContent = solution;
@@ -94,6 +98,11 @@ let oprBtns = document.querySelectorAll('.opr');
 
 for (let i = 0; i < oprBtns.length; i++) {
   oprBtns[i].addEventListener('click', (e) => {
+    if (!calcObj.current) {
+      calcObj.current = calcObj.last;
+      calcObj.last = '';
+    };
+    
     let calculated = operate(calcObj.operator);
     
     calcObj.operator = e.target.textContent;
@@ -129,6 +138,10 @@ document.addEventListener('keydown', (e) => {
   console.log(pressed);
 
   if(pressed === "=" || pressed === "Enter") {
+    if (!calcObj.current || !calcObj.last) {
+      currentObj();
+      return;
+    }
     let solution = operate(calcObj.operator);
     calcObj.last = solution;
     display.textContent = solution;
@@ -148,8 +161,22 @@ document.addEventListener('keydown', (e) => {
     display.textContent = '';
   };
   if (pressed === '+' || pressed === '-' || pressed === '*' || pressed === '/') {
+    if (!calcObj.current) {
+      calcObj.current = calcObj.last;
+      calcObj.last = '';
+    };
+    
+    let calculated = operate(calcObj.operator);
+    
     calcObj.operator = pressed;
-    if(!calcObj.last) calcObj.last = calcObj.current;
+    
+    if (!calcObj.last) {
+      calcObj.last = calcObj.current
+    } else {
+      calcObj.last = calculated;
+    };
+
+    display.textContent = calcObj.last;
     calcObj.current = '';
     currentObj();
   };
