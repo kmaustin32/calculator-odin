@@ -65,6 +65,16 @@ const operate = () => {
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
+  if (calcObj.operator == '/' && calcObj.current == '0') {
+    display.textContent = "Bad!";
+    setTimeout(() => {
+      display.textContent = calcObj.last;
+      calcObj.current = '';
+    }, 800);
+    currentObj();
+    return;
+  };
+  
   if (!calcObj.current || !calcObj.last) {
     currentObj();
     return;
