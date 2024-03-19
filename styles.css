@@ -49,13 +49,12 @@ body {
   border: 2px solid deeppink;
 }
 
-#clear:active,
-#delete:active {
+#clear:active {
   color: whitesmoke;
   border-color: whitesmoke;
   background-color: rgba(255, 20, 147, .5);
   filter: blur(1.25px);
-  transition: all 500ms;
+  transition: all 200ms;
   width: 50%;
 }
 
@@ -68,12 +67,13 @@ body {
   color: whitesmoke;
   border-color: whitesmoke;
   background-color: rgba(123, 104, 238, .5);
-  transition: all 500ms;
+  transition: all 200ms;
   width: 50%;
 }
 
 .num:active, 
-.opr:active {
+.opr:active,
+#delete:active {
   transform: translateY(-10px);
   transition: transform 200ms ease;
 }

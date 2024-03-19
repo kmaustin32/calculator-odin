@@ -102,6 +102,8 @@ clearButton.addEventListener('click', (e) => {
 
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', (e) => {
+  if (!calcObj.current) return;
+  
   let newCurrent = calcObj.current.slice(0, -1);
   calcObj.current = newCurrent;
   display.textContent = calcObj.current;
