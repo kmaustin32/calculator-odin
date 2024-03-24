@@ -27,6 +27,37 @@ const checkZero = () => {
   return false;
 };
 
+const calculate = () => {
+  if(checkZero()) return;
+  
+  if (!calcObj.current || !calcObj.last) {
+    currentObj();
+    return;
+  }
+  let solution = operate(calcObj.operator);
+  calcObj.last = solution;
+  display.textContent = solution;
+  calcObj.current = '';
+  calcObj.operator = '';
+  currentObj();
+};
+
+const clear = () => {
+  calcObj.current = '';
+  calcObj.last = '';
+  calcObj.operator = '';
+  display.textContent = '';
+  currentObj();
+};
+
+const deleted = () => {
+  if (!calcObj.current) return;
+  
+  let newCurrent = calcObj.current.slice(0, -1);
+  calcObj.current = newCurrent;
+  display.textContent = calcObj.current;
+};
+
 const add = () => {
   if (calcObj.last === '') calcObj.last = 0;
   return parseFloat(calcObj.last) + parseFloat(calcObj.current);
@@ -77,36 +108,17 @@ const operate = () => {
 
 const calculateButton = document.querySelector('#calculate');
 calculateButton.addEventListener('click', (e) =>{
-  if(checkZero()) return;
-  
-  if (!calcObj.current || !calcObj.last) {
-    currentObj();
-    return;
-  }
-  let solution = operate(calcObj.operator);
-  calcObj.last = solution;
-  display.textContent = solution;
-  calcObj.current = '';
-  calcObj.operator = '';
-  currentObj();
+  calculate();
 });
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => {
-  calcObj.current = '';
-  calcObj.last = '';
-  calcObj.operator = '';
-  display.textContent = '';
-  currentObj();
+  clear();
 });
 
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', (e) => {
-  if (!calcObj.current) return;
-  
-  let newCurrent = calcObj.current.slice(0, -1);
-  calcObj.current = newCurrent;
-  display.textContent = calcObj.current;
+  deleted();
 });
 
 // Add event listeners to operator keys
@@ -154,32 +166,15 @@ document.addEventListener('keydown', (e) => {
   console.log(pressed);
 
   if(pressed === "=" || pressed === "Enter") {
-    if (checkZero()) return;
-
-    if (!calcObj.current || !calcObj.last) {
-      currentObj();
-      return;
-    };
-
-    let solution = operate(calcObj.operator);
-    calcObj.last = solution;
-    display.textContent = solution;
-    calcObj.current = '';
-    calcObj.operator = '';
-    currentObj();
+    calculate()
   };
 
   if (pressed === "Backspace") {
-    let newCurrent = calcObj.current.slice(0, -1);
-    calcObj.current = newCurrent;
-    display.textContent = calcObj.current;
+    deleted();
   };
 
   if (pressed === 'Delete') {
-    calcObj.current = '';
-    calcObj.last = '';
-    calcObj.operator = '';
-    display.textContent = '';
+    clear();
   };
 
   if (pressed === '+' || pressed === '-' || pressed === '*' || pressed === '/') {
