@@ -2,6 +2,11 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+:root {
+  --calc-active: rgba(123, 104, 238, .5); 
+  --clear-active: rgba(255, 20, 147, .5);
+}
+
 body {
   background-color: #121827;
   min-height: 100dvh;
@@ -52,7 +57,7 @@ body {
 #clear:active {
   color: whitesmoke;
   border-color: whitesmoke;
-  background-color: rgba(255, 20, 147, .5);
+  background-color: var(--clear-active);
   filter: blur(1.25px);
   transition: all 200ms;
   width: 50%;
@@ -66,7 +71,7 @@ body {
 #calculate:active {
   color: whitesmoke;
   border-color: whitesmoke;
-  background-color: rgba(123, 104, 238, .5);
+  background-color: var(--calc-active);
   transition: all 200ms;
   width: 50%;
 }
