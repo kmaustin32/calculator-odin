@@ -5,6 +5,7 @@
 :root {
   --calc-active: rgba(123, 104, 238, .5); 
   --clear-active: rgba(255, 20, 147, .5);
+  --btn-main: rgba(40, 40, 40, .65);
 }
 
 body {
@@ -102,14 +103,14 @@ body {
   color: whitesmoke;
   height: 100%;
   width: 100%;
-  background-color: rgba(40, 40, 40, .65);
+  background-color: var(--btn-main);
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 200ms ease;
   font-size: 2em;
   border-radius: 12px;
-  border: 2px solid rgba(40, 40, 40, .65);
+  border: 2px solid var(--btn-main);
   box-sizing: border-box;
 }
 
