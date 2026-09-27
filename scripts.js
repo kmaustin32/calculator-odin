@@ -15,7 +15,7 @@ const currentObj = () => {
 };
 
 const checkZero = () => {
-  if (calcObj.operator == '/' && calcObj.current == '0') {
+  if (calcObj.operator === '/' && calcObj.current === '0') {
     display.textContent = "Bad!";
     setTimeout(() => {
       display.textContent = calcObj.last;
